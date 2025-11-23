@@ -62,10 +62,11 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
            
            {/* Main Image Container - Abstract Architectural/Tech vibe */}
            <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl border border-gray-100">
+              {/* Nouvelle image Unsplash : Architecture moderne abstraite, tons froids */}
               <img 
-                src="https://picsum.photos/seed/architecture_modern/800/1000" 
+                src="https://images.unsplash.com/photo-1486325212027-8081e485255e?q=80&w=2070&auto=format&fit=crop" 
                 alt="Architecture Moderne et Structure" 
-                className="w-full h-full object-cover grayscale-[20%] hover:grayscale-0 transition-all duration-700 hover:scale-105"
+                className="w-full h-full object-cover grayscale-[10%] hover:grayscale-0 transition-all duration-700 hover:scale-105"
               />
               
               {/* Floating Badge */}

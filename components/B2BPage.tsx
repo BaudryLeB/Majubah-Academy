@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Building2, TrendingUp, FileCheck, Brain, Users, Mic, ArrowRight, CheckCircle, Target } from 'lucide-react';
 
@@ -202,9 +203,12 @@ export const B2BPage: React.FC<B2BPageProps> = ({ onNavigate }) => {
                  </p>
                </div>
                <div className="mt-4">
-                 <span className="text-xs font-bold text-petrol border-b border-petrol/20 pb-0.5 group-hover:border-petrol transition-all cursor-pointer">
+                 <button 
+                    onClick={() => onNavigate('speaker')}
+                    className="text-xs font-bold text-petrol border-b border-petrol/20 pb-0.5 group-hover:border-petrol transition-all cursor-pointer focus:outline-none"
+                 >
                    Voir les thématiques →
-                 </span>
+                 </button>
                </div>
             </div>
 

@@ -1,8 +1,9 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: './', // Assure que les chemins sont relatifs pour GitHub Pages
-});
+  // Cette option est importante pour éviter les pages blanches sur certains hébergeurs
+  base: './',
+})

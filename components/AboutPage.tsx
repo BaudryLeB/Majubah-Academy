@@ -14,7 +14,7 @@ export const AboutPage: React.FC = () => {
              <div className="absolute -top-4 -left-4 w-full h-full border-2 border-petrol/10 rounded-2xl z-0"></div>
              <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl aspect-[3/4]">
                <img 
-                 src="./baudry.jpg" 
+                 src="https://picsum.photos/seed/man_portrait/600/800" 
                  alt="Baudry Bahuna Portrait" 
                  className="w-full h-full object-cover grayscale contrast-110 hover:grayscale-0 transition-all duration-1000"
                />

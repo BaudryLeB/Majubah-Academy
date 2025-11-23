@@ -4,6 +4,7 @@ import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { ProblemSection } from './components/ProblemSection';
 import { SolutionBento } from './components/SolutionBento';
+import { SpeakerTeaser } from './components/SpeakerTeaser';
 import { AuthoritySection } from './components/AuthoritySection';
 import { Footer } from './components/Footer';
 import { MethodPage } from './components/MethodPage';
@@ -15,9 +16,14 @@ import { B2BPage } from './components/B2BPage';
 import { B2BAuditPage } from './components/B2BAuditPage';
 import { ThankYouPage } from './components/ThankYouPage';
 import { ThankYouAuditPage } from './components/ThankYouAuditPage';
+import { ThankYouContactPage } from './components/ThankYouContactPage';
 import { LegalPage } from './components/LegalPage';
 import { CGVPage } from './components/CGVPage';
 import { AccessibilityPage } from './components/AccessibilityPage';
+import { OpportunitiesPage } from './components/OpportunitiesPage';
+import { SpeakerPage } from './components/SpeakerPage';
+import { KPISection } from './components/KPISection';
+import { ContactSection } from './components/ContactSection';
 
 const App: React.FC = () => {
   const [currentPage, setCurrentPage] = useState('home');
@@ -37,7 +43,13 @@ const App: React.FC = () => {
 
   const navigateTo = (page: string, sectionId?: string) => {
     setCurrentPage(page);
-    window.history.pushState({ page }, '', `#${page}`);
+    
+    // Wrap history update in try-catch to prevent SecurityError in sandboxed/blob environments
+    try {
+      window.history.pushState({ page }, '', `#${page}`);
+    } catch (e) {
+      console.warn("History API restricted in this environment, navigation state not pushed to URL.");
+    }
 
     if (sectionId) {
       // Use setTimeout to allow DOM to update before scrolling
@@ -52,7 +64,7 @@ const App: React.FC = () => {
     }
   };
 
-  const showNavAndFooter = currentPage !== 'apply' && currentPage !== 'b2b-audit' && currentPage !== 'thank-you' && currentPage !== 'thank-you-audit';
+  const showNavAndFooter = currentPage !== 'apply' && currentPage !== 'b2b-audit' && currentPage !== 'thank-you' && currentPage !== 'thank-you-audit' && currentPage !== 'thank-you-contact';
 
   return (
     <div className="min-h-screen bg-white font-sans text-petrol">
@@ -62,8 +74,10 @@ const App: React.FC = () => {
           <>
             <Hero onNavigate={navigateTo} />
             <ProblemSection />
-            <SolutionBento />
+            <SolutionBento onNavigate={navigateTo} />
+            <SpeakerTeaser onNavigate={navigateTo} />
             <AuthoritySection />
+            <ContactSection onNavigate={navigateTo} />
           </>
         ) : currentPage === 'method' ? (
           <MethodPage onNavigate={navigateTo} />
@@ -83,15 +97,26 @@ const App: React.FC = () => {
           <ThankYouPage />
         ) : currentPage === 'thank-you-audit' ? (
           <ThankYouAuditPage />
+        ) : currentPage === 'thank-you-contact' ? (
+          <ThankYouContactPage />
         ) : currentPage === 'legal' ? (
           <LegalPage />
         ) : currentPage === 'cgv' ? (
           <CGVPage />
         ) : currentPage === 'accessibility' ? (
           <AccessibilityPage />
+        ) : currentPage === 'opportunities' ? (
+          <OpportunitiesPage onNavigate={navigateTo} />
+        ) : currentPage === 'speaker' ? (
+          <SpeakerPage onNavigate={navigateTo} />
         ) : null}
       </main>
-      {showNavAndFooter && <Footer onNavigate={navigateTo} />}
+      {showNavAndFooter && (
+        <>
+          <KPISection />
+          <Footer onNavigate={navigateTo} />
+        </>
+      )}
     </div>
   );
 };

@@ -68,45 +68,28 @@ export const MethodPage: React.FC<MethodPageProps> = ({ onNavigate }) => {
         </div>
       </section>
 
-      {/* 3. LE PARCOURS EN 5 ÉTAPES */}
+      {/* 3. LE PARCOURS EN 5 ÉTAPES (GRID LAYOUT) */}
       <section className="py-24 bg-surface px-6 overflow-hidden">
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-7xl mx-auto">
           <div className="mb-16 md:text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-petrol mb-4">Votre feuille de route vers la certification</h2>
             <p className="text-gray-600">Un programme intensif de 3 mois pour passer d'expert à formateur d'élite.</p>
           </div>
 
-          <div className="relative">
-            {/* Ligne verticale centrale (desktop) / gauche (mobile) */}
-            <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-petrol/20 transform md:-translate-x-1/2"></div>
-
-            <div className="space-y-12">
-              {[
-                { step: "01", title: "FONDATIONS", desc: "Extraire votre 'Zone de Génie' et définir votre positionnement unique." },
-                { step: "02", title: "CONCEPTION (IA)", desc: "Structurer votre programme et vos scénarios pédagogiques avec l'aide de l'IA." },
-                { step: "03", title: "ANIMATION (Neuro)", desc: "Maîtriser l'art de transmettre en présentiel et à distance (Zoom) avec impact." },
-                { step: "04", title: "LÉGAL & QUALITÉ", desc: "Comprendre le cadre Qualiopi et préparer votre certification RS6977." },
-                { step: "05", title: "LANCEMENT & MEUTE", desc: "Créer votre offre commerciale et accéder aux opportunités du réseau Majubah." }
-              ].map((item, idx) => (
-                <div key={idx} className={`relative flex items-center ${idx % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
-                  
-                  {/* Spacer for desktop layout */}
-                  <div className="hidden md:block w-1/2"></div>
-                  
-                  {/* Point central */}
-                  <div className="absolute left-8 md:left-1/2 w-4 h-4 bg-white border-4 border-accent rounded-full transform -translate-x-1/2 z-10"></div>
-                  
-                  {/* Content Card */}
-                  <div className={`ml-20 md:ml-0 w-full md:w-1/2 ${idx % 2 === 0 ? 'md:pr-16 md:text-right' : 'md:pl-16 md:text-left'}`}>
-                    <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-                      <span className="inline-block text-4xl font-black text-petrol/5 mb-2">{item.step}</span>
-                      <h3 className="text-lg font-bold text-petrol mb-2">{item.title}</h3>
-                      <p className="text-gray-600 text-sm">{item.desc}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+            {[
+              { step: "1", title: "FONDATIONS", desc: "Extraire votre 'Zone de Génie' et définir votre positionnement unique." },
+              { step: "2", title: "CONCEPTION (IA)", desc: "Structurer votre programme et vos scénarios pédagogiques avec l'aide de l'IA." },
+              { step: "3", title: "ANIMATION (Neuro)", desc: "Maîtriser l'art de transmettre en présentiel et à distance (Zoom) avec impact." },
+              { step: "4", title: "LÉGAL & QUALITÉ", desc: "Comprendre le cadre Qualiopi et préparer votre certification RS6977." },
+              { step: "5", title: "LANCEMENT & MEUTE", desc: "Créer votre offre commerciale et accéder aux opportunités du réseau Majubah." }
+            ].map((item, idx) => (
+              <div key={idx} className="bg-white p-8 rounded-2xl border border-transparent hover:border-petrol/20 hover:shadow-lg transition-all duration-300 group flex flex-col items-center text-center">
+                <span className="block text-5xl font-black text-accent mb-6 group-hover:scale-110 transition-transform">{item.step}</span>
+                <h3 className="text-lg font-bold text-petrol mb-3 uppercase tracking-wide">{item.title}</h3>
+                <p className="text-gray-600 text-sm leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>

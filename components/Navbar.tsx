@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 
@@ -26,6 +27,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigate }) => {
     { name: "La Méthode", action: () => handleNavClick('method') },
     { name: "Devenir Formateur", action: () => handleNavClick('become-trainer') },
     { name: "La Meute (Portage)", action: () => handleNavClick('meute') },
+    { name: "L'Agence", action: () => handleNavClick('opportunities') },
     { name: "À propos", action: () => handleNavClick('about') },
   ];
 
@@ -46,12 +48,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigate }) => {
         </div>
 
         {/* Desktop Links */}
-        <div className="hidden md:flex items-center space-x-8">
+        <div className="hidden lg:flex items-center space-x-6 xl:space-x-8">
           {navLinks.map((link) => (
             <button 
               key={link.name} 
               onClick={link.action}
-              className="text-sm font-medium text-petrol/70 hover:text-petrol transition-colors focus:outline-none"
+              className="text-sm font-medium text-petrol/70 hover:text-accent transition-colors duration-300 focus:outline-none whitespace-nowrap"
             >
               {link.name}
             </button>
@@ -59,17 +61,17 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigate }) => {
         </div>
 
         {/* Desktop CTA */}
-        <div className="hidden md:block">
+        <div className="hidden lg:block">
           <button onClick={() => handleNavClick('apply')} className="bg-accent text-white px-6 py-2.5 rounded-lg text-sm font-bold hover:bg-accent/90 hover:shadow-glow transition-all duration-300 transform hover:-translate-y-0.5">
             POSTULER À L'ACADÉMIE
           </button>
         </div>
 
         {/* Mobile Menu Button */}
-        <div className="md:hidden">
+        <div className="lg:hidden">
           <button 
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="text-petrol focus:outline-none"
+            className="text-petrol focus:outline-none hover:text-accent transition-colors"
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -78,12 +80,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigate }) => {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 w-full bg-white border-b border-gray-100 p-6 flex flex-col space-y-4 shadow-lg animate-fade-in">
+        <div className="lg:hidden absolute top-full left-0 w-full bg-white border-b border-gray-100 p-6 flex flex-col space-y-4 shadow-lg animate-fade-in">
           {navLinks.map((link) => (
             <button 
               key={link.name} 
               onClick={link.action}
-              className="text-left text-base font-medium text-petrol/80 py-2"
+              className="text-left text-base font-medium text-petrol/80 hover:text-accent transition-colors py-2"
             >
               {link.name}
             </button>

@@ -1,7 +1,12 @@
+
 import React from 'react';
 import { GraduationCap, Users, Mic } from 'lucide-react';
 
-export const SolutionBento: React.FC = () => {
+interface SolutionBentoProps {
+  onNavigate?: (page: string) => void;
+}
+
+export const SolutionBento: React.FC<SolutionBentoProps> = ({ onNavigate }) => {
   return (
     <section id="solution" className="py-24 bg-surface">
       <div className="max-w-7xl mx-auto px-6">
@@ -64,9 +69,16 @@ export const SolutionBento: React.FC = () => {
                 </span>
               </div>
               <h3 className="text-2xl font-bold text-white mb-2">LA MEUTE</h3>
-              <p className="text-white/90 text-sm">
+              <p className="text-white/90 text-sm mb-6">
                 Utilisez notre label Qualiopi pour facturer immédiatement. Nous gérons l'admin, les contrats et la facturation. Vous animez, point barre.
               </p>
+              
+              <button 
+                onClick={() => onNavigate && onNavigate('meute')}
+                className="px-5 py-2.5 rounded-lg border border-white text-white text-xs font-bold hover:bg-white hover:text-accent transition-all duration-300"
+              >
+                DÉCOUVRIR LE PORTAGE →
+              </button>
             </div>
             <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-white/10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700"></div>
           </div>
@@ -77,15 +89,18 @@ export const SolutionBento: React.FC = () => {
               <div className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-petrol/5 text-petrol mb-4">
                 <Mic size={20} />
               </div>
-              <h3 className="text-2xl font-bold text-petrol mb-2">L'AGENCE</h3>
+              <h3 className="text-2xl font-bold text-petrol mb-2">L'AGENCE (Scaler)</h3>
               <p className="text-gray-500 text-sm">
-                Les meilleurs éléments de l'Académie accèdent à notre catalogue de missions d'entreprise et à nos scènes de conférence.
+                Accédez à notre catalogue de missions et à nos scènes de conférence.
               </p>
             </div>
             <div className="mt-4">
-               <span className="text-xs font-bold text-petrol border-b border-petrol/20 pb-0.5 group-hover:border-petrol transition-all cursor-pointer">
+               <button 
+                 onClick={() => onNavigate && onNavigate('opportunities')}
+                 className="text-xs font-bold text-petrol border-b border-petrol/20 pb-0.5 group-hover:border-petrol transition-all cursor-pointer focus:outline-none"
+               >
                  Voir les opportunités →
-               </span>
+               </button>
             </div>
           </div>
 

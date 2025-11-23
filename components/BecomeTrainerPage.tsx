@@ -1,5 +1,6 @@
+
 import React, { useState } from 'react';
-import { Check, ArrowRight, ChevronDown, ChevronUp } from 'lucide-react';
+import { Check, ArrowRight, ChevronDown, ChevronUp, FileCheck, FileText, Download } from 'lucide-react';
 
 interface BecomeTrainerPageProps {
   onNavigate: (page: string, section?: string) => void;
@@ -7,6 +8,7 @@ interface BecomeTrainerPageProps {
 
 export const BecomeTrainerPage: React.FC<BecomeTrainerPageProps> = ({ onNavigate }) => {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [isCertOpen, setIsCertOpen] = useState(false);
 
   const toggleFaq = (index: number) => {
     setOpenFaq(openFaq === index ? null : index);
@@ -115,6 +117,42 @@ export const BecomeTrainerPage: React.FC<BecomeTrainerPageProps> = ({ onNavigate
         </div>
       </section>
 
+      {/* NEW: PDF DOWNLOAD LEAD MAGNET */}
+      <section className="py-12 bg-white px-6 -mt-10 relative z-10">
+        <div className="max-w-5xl mx-auto">
+          <div className="bg-petrol rounded-2xl p-8 md:p-10 shadow-xl flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden group">
+             {/* Decorative Background */}
+             <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+             <div className="absolute inset-0 bg-gradient-to-r from-petrol to-petrol/90"></div>
+             
+             {/* Left: Icon & Text */}
+             <div className="flex flex-col md:flex-row items-center md:items-start gap-6 text-center md:text-left relative z-10 w-full md:w-2/3">
+                <div className="w-16 h-16 bg-white/10 rounded-xl flex items-center justify-center flex-shrink-0 backdrop-blur-sm border border-white/10">
+                   <FileText size={32} className="text-accent" />
+                </div>
+                <div>
+                   <h3 className="text-2xl font-bold text-white mb-2">Vous voulez tous les détails ?</h3>
+                   <p className="text-gray-300 text-sm leading-relaxed">
+                     Téléchargez le programme de formation complet (PDF) : objectifs détaillés, déroulé module par module, modalités d'évaluation et prérequis techniques. Idéal pour présenter votre projet à un financeur.
+                   </p>
+                </div>
+             </div>
+
+             {/* Right: Button */}
+             <div className="relative z-10 flex-shrink-0 w-full md:w-auto flex justify-center">
+                <a 
+                  href="assets/programme-majubah-rs6977.pdf" 
+                  target="_blank" 
+                  download
+                  className="inline-flex items-center justify-center gap-2 bg-accent text-white px-6 py-4 rounded-lg font-bold shadow-lg shadow-accent/20 hover:shadow-xl hover:shadow-accent/30 hover:-translate-y-1 transition-all duration-300 border border-white/10 w-full md:w-auto text-sm"
+                >
+                  TÉLÉCHARGER LE PROGRAMME (PDF) <Download size={18} />
+                </a>
+             </div>
+          </div>
+        </div>
+      </section>
+
       {/* 4. PRICING & FINANCING */}
       <section className="py-24 bg-surface px-6" id="pricing">
         <div className="max-w-5xl mx-auto">
@@ -191,7 +229,90 @@ export const BecomeTrainerPage: React.FC<BecomeTrainerPageProps> = ({ onNavigate
         </div>
       </section>
 
-      {/* 7. FAQ */}
+      {/* 7. DÉTAILS OFFICIELS RS6977 (Accordion) */}
+      <section className="py-12 bg-white px-6">
+        <div className="max-w-4xl mx-auto">
+          <div className="border border-petrol/20 rounded-xl overflow-hidden shadow-sm">
+            <button
+              onClick={() => setIsCertOpen(!isCertOpen)}
+              className="w-full flex items-center justify-between p-6 bg-surface hover:bg-gray-100 transition-colors text-left group"
+            >
+              <div className="flex items-center gap-4">
+                  <div className="bg-petrol text-white p-2 rounded-full shadow-sm group-hover:bg-accent transition-colors">
+                      <FileCheck size={20} strokeWidth={2} />
+                  </div>
+                  <span className="font-bold text-petrol text-lg group-hover:text-accent transition-colors">
+                      Détails Officiels de la Certification & Référentiel de Compétences (RS6977)
+                  </span>
+              </div>
+              {isCertOpen ? <ChevronUp className="text-petrol" /> : <ChevronDown className="text-petrol" />}
+            </button>
+
+            {isCertOpen && (
+              <div className="p-8 bg-white border-t border-gray-100 animate-fade-in text-gray-700 leading-relaxed space-y-8">
+                  
+                  {/* SOUS-TITRE 1 */}
+                  <div>
+                      <h4 className="font-bold text-petrol uppercase tracking-wider mb-4 border-b border-gray-100 pb-2 text-sm">1. Identité de la certification</h4>
+                      <ul className="space-y-2 text-sm">
+                          <li><span className="font-bold text-petrol">Intitulé officiel :</span> Créer et développer une activité de formation professionnelle.</li>
+                          <li><span className="font-bold text-petrol">Code France Compétences :</span> RS6977.</li>
+                          <li><span className="font-bold text-petrol">Certificateur :</span> [NOM DU CERTIFICATEUR EXACT À VÉRIFIER SUR TA FICHE]</li>
+                          <li><span className="font-bold text-petrol">Niveau et/ou domaine d'activité :</span> (Voir fiche France Compétences).</li>
+                      </ul>
+                      <a href="https://www.francecompetences.fr/recherche/rs/6977/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 mt-4 text-accent font-bold hover:underline text-sm">
+                          Voir la fiche officielle sur France Compétences <ArrowRight size={14} />
+                      </a>
+                  </div>
+
+                  {/* SOUS-TITRE 2 */}
+                  <div>
+                      <h4 className="font-bold text-petrol uppercase tracking-wider mb-4 border-b border-gray-100 pb-2 text-sm">2. Public & Prérequis</h4>
+                      <div className="space-y-4 text-sm">
+                          <p>
+                              <span className="font-bold text-petrol">Public visé :</span> Tout professionnel souhaitant acquérir les compétences nécessaires pour créer et pérenniser une activité de formation, en tant qu'indépendant ou dirigeant d'organisme.
+                          </p>
+                          <p>
+                              <span className="font-bold text-petrol">Prérequis :</span> Disposer d'une expertise métier avérée dans son domaine d'intervention. Avoir un projet de création ou de développement d'activité de formation. Maîtriser les outils numériques de base et disposer d'un ordinateur avec connexion internet et webcam.
+                          </p>
+                      </div>
+                  </div>
+
+                  {/* SOUS-TITRE 3 */}
+                  <div>
+                      <h4 className="font-bold text-petrol uppercase tracking-wider mb-4 border-b border-gray-100 pb-2 text-sm">3. Compétences attestées (Référentiel)</h4>
+                      <ul className="list-disc pl-5 space-y-2 text-sm">
+                          <li>Concevoir et structurer une offre de formation adaptée aux besoins du marché et des apprenants.</li>
+                          <li>Préparer et animer des actions de formation en utilisant des méthodes pédagogiques actives et adaptées aux modalités (présentiel, distanciel).</li>
+                          <li>Gérer l'activité de formation sur les plans administratif, financier, commercial et qualité (notamment Qualiopi).</li>
+                      </ul>
+                  </div>
+
+                  {/* SOUS-TITRE 4 */}
+                  <div>
+                      <h4 className="font-bold text-petrol uppercase tracking-wider mb-4 border-b border-gray-100 pb-2 text-sm">4. Modalités d'évaluation</h4>
+                      <p className="text-sm mb-2">La certification est délivrée à l'issue d'un parcours d'évaluation mixte :</p>
+                      <ul className="list-disc pl-5 space-y-2 text-sm">
+                          <li>Contrôle continu durant le parcours de formation (cas pratiques, quizz).</li>
+                          <li>Épreuve finale : Production d'un dossier professionnel écrit et soutenance orale de 45 minutes devant un jury de professionnels habilités.</li>
+                      </ul>
+                  </div>
+
+                  {/* SOUS-TITRE 5 */}
+                  <div>
+                      <h4 className="font-bold text-petrol uppercase tracking-wider mb-4 border-b border-gray-100 pb-2 text-sm">5. Accessibilité (PSH)</h4>
+                      <p className="text-sm">
+                          Formation accessible aux personnes en situation de handicap. Des aménagements sont possibles. Contactez notre Référent Handicap (voir page Accessibilité).
+                      </p>
+                  </div>
+
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* 8. FAQ */}
       <section className="py-24 bg-surface px-6">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-3xl font-bold text-center mb-12">Vos questions fréquentes</h2>
